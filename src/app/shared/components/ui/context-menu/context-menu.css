@@ -44,6 +44,15 @@
   text-shadow: 0 0 12px color-mix(in srgb, var(--accent-palette) 45%, transparent);
 }
 
+.context-menu__item--accent {
+  color: var(--accent-palette);
+}
+.context-menu__item--accent:hover {
+  background: color-mix(in srgb, var(--accent-palette) 12%, transparent);
+  color: var(--accent-palette);
+  text-shadow: 0 0 12px color-mix(in srgb, var(--accent-palette) 45%, transparent);
+}
+
 .context-menu__item--danger {
   color: rgba(248, 113, 113, 0.9);
 }

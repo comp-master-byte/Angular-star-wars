@@ -13,41 +13,57 @@ export class Navigation {
   private router = inject(Router);
   private authService = inject(AuthService);
   public isContextMenuVisible = signal(false);
-  public contextMenuOptions: ContextMenuOption[] = [
-    {id: 'profile', label: 'Профиль', variant: 'default'},
-    {id: 'favorites', label: 'Избранное', variant: 'default'},
-    {id: 'settings', label: 'Настройки', variant: 'default'},
-    {id: 'logout', label: 'Выйти', variant: 'danger'},
-  ]
+
   public routes = [
-    {path: '/', name: 'Персонажи'},
-    {path: '/episodes', name: 'Фильмы'},
-    {path: '/planets', name: 'Планеты'},
-    {path: '/species', name: 'Биологический вид'},
-    {path: '/starships', name: 'Зведные корабли'},
-    {path: '/vehicles', name: 'Транспортные средства'},
-  ]
+    { path: '/', name: 'Персонажи' },
+    { path: '/episodes', name: 'Фильмы' },
+    { path: '/planets', name: 'Планеты' },
+    { path: '/species', name: 'Биологический вид' },
+    { path: '/starships', name: 'Зведные корабли' },
+    { path: '/vehicles', name: 'Транспортные средства' },
+  ];
+
+  get contextMenuOptions(): ContextMenuOption[] {
+    if (!this.authService.isAuthed) {
+      return [
+        { id: 'sign-in', label: 'Войти', variant: 'accent' },
+        { id: 'favorites', label: 'Избранное', variant: 'default' },
+        { id: 'settings', label: 'Настройки', variant: 'default' },
+      ];
+    }
+
+    return [
+      { id: 'profile', label: 'Профиль', variant: 'default' },
+      { id: 'favorites', label: 'Избранное', variant: 'default' },
+      { id: 'settings', label: 'Настройки', variant: 'default' },
+      { id: 'logout', label: 'Выйти', variant: 'danger' },
+    ];
+  }
 
   handleProfileClick() {
     this.isContextMenuVisible.update((isVisible) => !isVisible);
   }
 
   handleProfileMenuSelect(option: ContextMenuOption) {
-    if(option.id === 'profile') {
+    if (option.id === 'sign-in') {
+      this.router.navigate(['/sign-in']);
+    }
+
+    if (option.id === 'profile') {
       this.router.navigate(['/account/profile']);
     }
 
-    if(option.id === 'favorites') {
+    if (option.id === 'favorites') {
       this.router.navigate(['/account/favorites']);
     }
 
-    if(option.id === 'settings') {
+    if (option.id === 'settings') {
       this.router.navigate(['/account/settings/appearance']);
     }
 
-    if(option.id === 'logout') {
+    if (option.id === 'logout') {
       this.authService.logout();
-    } 
+    }
 
     this.isContextMenuVisible.set(false);
   }

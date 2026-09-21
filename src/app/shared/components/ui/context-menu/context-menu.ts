@@ -3,7 +3,7 @@ import { Component, ElementRef, HostListener, inject, input, output } from '@ang
 export type ContextMenuOption = {
   id: string;
   label: string;
-  variant: 'default' | 'danger';
+  variant: 'default' | 'accent' | 'danger';
 }
 
 @Component({

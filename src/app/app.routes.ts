@@ -42,7 +42,6 @@ export const routes: Routes = [
   {
     path: '',
     component: MainLayout,
-    canActivate: [authGuard],
     children: [
       { path: '', component: CharactersPage },
       { path: 'characters/:id', component: CharacterPage },
@@ -58,19 +57,18 @@ export const routes: Routes = [
   {
     path: 'account',
     component: AccountLayout,
-    canActivate: [authGuard],
     children: [
-      { path: 'profile', component: ProfilePage },
+      { path: 'profile', component: ProfilePage, canActivate: [authGuard] },
       { path: 'favorites', component: FavoritesPage },
       {
         path: 'settings',
         component: SettingsLayout,
         children: [
           { path: 'appearance', component: AppearancePage },
-          { path: 'security', component: SecurityPage },
+          { path: 'security', component: SecurityPage, canActivate: [authGuard] },
         ],
       },
     ],
   },
-  { path: '**', redirectTo: 'sign-in' },
+  { path: '**', redirectTo: '' },
 ];
