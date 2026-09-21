@@ -4,6 +4,7 @@ export type ContextMenuOption = {
   id: string;
   label: string;
   variant: 'default' | 'accent' | 'danger';
+  icon?: string;
 }
 
 @Component({

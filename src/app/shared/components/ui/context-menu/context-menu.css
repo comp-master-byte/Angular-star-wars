@@ -22,7 +22,11 @@
 }
 
 .context-menu__item {
+  display: flex;
   width: 100%;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
   border: none;
   border-radius: 10px;
   background: transparent;
@@ -33,9 +37,20 @@
   font-weight: 600;
   letter-spacing: 0.08em;
   padding: 11px 12px;
-  text-align: left;
   text-transform: uppercase;
   transition: 0.2s ease;
+}
+
+.context-menu__icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  opacity: 0.78;
+  transition: 0.2s ease;
+}
+
+.context-menu__label {
+  line-height: 1;
 }
 
 .context-menu__item:hover {
@@ -44,9 +59,19 @@
   text-shadow: 0 0 12px color-mix(in srgb, var(--accent-palette) 45%, transparent);
 }
 
+.context-menu__item:hover .context-menu__icon {
+  opacity: 1;
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--accent-palette) 45%, transparent));
+}
+
 .context-menu__item--accent {
   color: var(--accent-palette);
 }
+
+.context-menu__item--accent .context-menu__icon {
+  opacity: 1;
+}
+
 .context-menu__item--accent:hover {
   background: color-mix(in srgb, var(--accent-palette) 12%, transparent);
   color: var(--accent-palette);
@@ -56,8 +81,13 @@
 .context-menu__item--danger {
   color: rgba(248, 113, 113, 0.9);
 }
+
 .context-menu__item--danger:hover {
   background: rgba(248, 113, 113, 0.1);
   color: #fca5a5;
   text-shadow: 0 0 12px rgba(248, 113, 113, 0.38);
+}
+
+.context-menu__item--danger:hover .context-menu__icon {
+  filter: drop-shadow(0 0 6px rgba(248, 113, 113, 0.38));
 }

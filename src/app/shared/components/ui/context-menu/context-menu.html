@@ -2,13 +2,21 @@
   <div class="context-menu">
     <ul class="context-menu__list">
       @for(option of options(); track option.id) {
-        <li 
+        <li
           class="context-menu__item"
           [class.context-menu__item--accent]="option.variant === 'accent'"
           [class.context-menu__item--danger]="option.variant === 'danger'"
           (click)="handleSelectOption(option)"
         >
-          {{option.label}}
+          @if (option.icon) {
+            <img
+              class="context-menu__icon"
+              [src]="option.icon"
+              [alt]="option.label"
+              aria-hidden="true"
+            />
+          }
+          <span class="context-menu__label">{{ option.label }}</span>
         </li>
       }
     </ul>

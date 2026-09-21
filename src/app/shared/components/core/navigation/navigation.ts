@@ -26,17 +26,17 @@ export class Navigation {
   get contextMenuOptions(): ContextMenuOption[] {
     if (!this.authService.isAuthed) {
       return [
-        { id: 'sign-in', label: 'Войти', variant: 'accent' },
-        { id: 'favorites', label: 'Избранное', variant: 'default' },
-        { id: 'settings', label: 'Настройки', variant: 'default' },
+        { id: 'sign-in', label: 'Войти', variant: 'accent', icon: '/svg/sign-in.svg' },
+        { id: 'favorites', label: 'Избранное', variant: 'default', icon: '/svg/favorites.svg' },
+        { id: 'settings', label: 'Настройки', variant: 'default', icon: '/svg/settings.svg' },
       ];
     }
 
     return [
-      { id: 'profile', label: 'Профиль', variant: 'default' },
-      { id: 'favorites', label: 'Избранное', variant: 'default' },
-      { id: 'settings', label: 'Настройки', variant: 'default' },
-      { id: 'logout', label: 'Выйти', variant: 'danger' },
+      { id: 'profile', label: 'Профиль', variant: 'default', icon: '/svg/profile.svg' },
+      { id: 'favorites', label: 'Избранное', variant: 'default', icon: '/svg/favorites.svg' },
+      { id: 'settings', label: 'Настройки', variant: 'default', icon: '/svg/settings.svg' },
+      { id: 'logout', label: 'Выйти', variant: 'danger', icon: '/svg/logout.svg' },
     ];
   }
 
