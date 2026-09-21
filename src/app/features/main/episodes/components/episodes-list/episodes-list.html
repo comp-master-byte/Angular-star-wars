@@ -1,7 +1,11 @@
-<div class="render-list">
-  @for (episode of episodes() | filterList: query() : searchQuery; track episode.episodeId) {
-    <app-episode-list-item [episode]="episode" />
-  } @empty {
+@if ((episodes() | filterList: query() : searchQuery); as filteredEpisodes) {
+  @if (filteredEpisodes.length) {
+    <div class="render-list">
+      @for (episode of filteredEpisodes; track episode.episodeId) {
+        <app-episode-list-item [episode]="episode" />
+      }
+    </div>
+  } @else {
     <app-empty-search />
   }
-</div>
+}

@@ -1,7 +1,11 @@
-<div class="render-list">
-  @for (character of characters() | filterList: query() : queryKeys; track character.name) {
-    <app-character-list-item [character]="character" />
-  } @empty {
+@if ((characters() | filterList: query() : queryKeys); as filteredCharacters) {
+  @if (filteredCharacters.length) {
+    <div class="render-list">
+      @for (character of filteredCharacters; track character.name) {
+        <app-character-list-item [character]="character" />
+      }
+    </div>
+  } @else {
     <app-empty-search />
   }
-</div>
+}

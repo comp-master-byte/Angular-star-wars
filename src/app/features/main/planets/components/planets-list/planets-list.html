@@ -1,7 +1,11 @@
-<div class="render-list">
-  @for (planet of planets() | filterList: query() : queryKeys; track planet.name) {
-    <app-planet-list-item [planet]="planet" />
-  } @empty {
+@if ((planets() | filterList: query() : queryKeys); as filteredPlanets) {
+  @if (filteredPlanets.length) {
+    <div class="render-list">
+      @for (planet of filteredPlanets; track planet.name) {
+        <app-planet-list-item [planet]="planet" />
+      }
+    </div>
+  } @else {
     <app-empty-search />
   }
-</div>
+}
