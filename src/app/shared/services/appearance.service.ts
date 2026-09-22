@@ -53,7 +53,7 @@ export class AppearanceService {
     const cardsViewMode = localStorage.getItem(CARDS_VIEW_KEY) as CardsViewMode;
 
     if(!cardsViewMode) {
-      this.setCardsViewMode('default');
+      this.setCardsViewMode('compact');
       return;
     }
 
@@ -64,7 +64,7 @@ export class AppearanceService {
     const palette = localStorage.getItem(PALETTE_KEY) as Palette;
 
     if(!palette) {
-      this.setPalette('imperial-yellow');
+      this.setPalette('sith-purple');
       return;
     }
 
@@ -75,7 +75,7 @@ export class AppearanceService {
     const theme = localStorage.getItem(THEME_KEY) as Theme;
 
     if(!theme) {
-      this.setTheme('imperial-black');
+      this.setTheme('void-crimson');
       return;
     }
 
