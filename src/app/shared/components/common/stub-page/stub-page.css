@@ -6,9 +6,11 @@
 .stub-page {
   position: relative;
   display: flex;
+  flex-direction: column;
   min-height: calc(100vh - 180px);
   align-items: center;
   justify-content: center;
+  gap: 28px;
   overflow: hidden;
   border: 1px solid color-mix(in srgb, var(--accent-palette) 22%, transparent);
   border-radius: 24px;
@@ -19,7 +21,7 @@
   box-shadow:
     inset 0 0 0 1px rgba(255, 255, 255, 0.04),
     0 24px 60px rgba(0, 0, 0, 0.48);
-  padding: 56px 24px;
+  padding: 56px 32px;
   text-align: center;
 }
 
@@ -42,14 +44,14 @@
 
 .stub-page__decor {
   position: relative;
-  width: 180px;
-  height: 180px;
-  margin-bottom: 32px;
+  flex-shrink: 0;
+  width: 160px;
+  height: 160px;
 }
 
 .stub-page__station {
   position: absolute;
-  inset: 48px;
+  inset: 42px;
   z-index: 2;
   border: 1px solid color-mix(in srgb, var(--accent-palette) 34%, transparent);
   border-radius: 50%;
@@ -71,8 +73,8 @@
   position: absolute;
   top: 28%;
   left: 22%;
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   border: 1px solid rgba(0, 0, 0, 0.42);
   background: rgba(0, 0, 0, 0.28);
@@ -86,81 +88,89 @@
 }
 
 .stub-page__orbit--outer {
-  inset: 12px;
+  inset: 10px;
   transform: rotate(-18deg);
 }
 
 .stub-page__orbit--inner {
-  inset: 34px;
+  inset: 30px;
   transform: rotate(22deg);
   opacity: 0.56;
 }
 
 .stub-page__satellite {
   position: absolute;
-  top: 18px;
+  top: 16px;
   left: 50%;
-  width: 9px;
-  height: 9px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: #ffffff;
   box-shadow: 0 0 16px rgba(255, 255, 255, 0.9);
-  transform-origin: 0 72px;
+  transform-origin: 0 64px;
   animation: stub-page-orbit 4s linear infinite;
 }
 
 .stub-page__content {
   position: relative;
   z-index: 1;
-  max-width: 620px;
+  width: 100%;
+  max-width: 560px;
 }
 
 .stub-page__eyebrow {
+  margin: 0;
   color: var(--accent-palette);
   font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.32em;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
 }
 
 .stub-page__title {
   margin: 12px 0 0;
   color: #ffffff;
-  font-size: clamp(32px, 5vw, 56px);
+  font-size: clamp(28px, 6vw, 48px);
   font-weight: 800;
-  line-height: 1;
+  line-height: 1.05;
+  text-wrap: balance;
   text-shadow: 0 0 22px color-mix(in srgb, var(--accent-palette) 18%, transparent);
 }
 
 .stub-page__description {
-  margin: 18px auto 0;
-  max-width: 520px;
+  margin: 16px auto 0;
+  max-width: 480px;
   color: rgba(255, 255, 255, 0.58);
-  font-size: 16px;
-  line-height: 1.7;
+  font-size: 15px;
+  line-height: 1.65;
+  text-wrap: pretty;
 }
 
 .stub-page__status {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
-  margin-top: 28px;
+  margin-top: 24px;
+  max-width: 100%;
   border: 1px solid color-mix(in srgb, var(--accent-palette) 22%, transparent);
   border-radius: 999px;
   background: color-mix(in srgb, var(--accent-palette) 6%, transparent);
   padding: 10px 16px;
   color: rgba(255, 255, 255, 0.66);
   font-size: 12px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
 .stub-page__status-dot {
+  flex-shrink: 0;
   width: 8px;
   height: 8px;
   border-radius: 50%;
   background: var(--accent-palette);
   box-shadow: 0 0 14px color-mix(in srgb, var(--accent-palette) 82%, transparent);
+  animation: stub-page-blink 1.6s ease-in-out infinite;
 }
 
 @keyframes stub-page-orbit {
@@ -172,23 +182,75 @@
   }
 }
 
+@keyframes stub-page-blink {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
 @media (max-width: 640px) {
   .stub-page {
-    min-height: calc(100vh - 140px);
-    padding: 40px 18px;
+    min-height: calc(100vh - 150px);
+    gap: 20px;
+    border-radius: 18px;
+    padding: 28px 16px 32px;
   }
 
   .stub-page__decor {
-    width: 140px;
-    height: 140px;
-    margin-bottom: 24px;
+    width: 112px;
+    height: 112px;
   }
 
   .stub-page__station {
-    inset: 38px;
+    inset: 30px;
+  }
+
+  .stub-page__station::after {
+    width: 10px;
+    height: 10px;
+  }
+
+  .stub-page__orbit--outer {
+    inset: 6px;
+  }
+
+  .stub-page__orbit--inner {
+    inset: 22px;
   }
 
   .stub-page__satellite {
-    transform-origin: 0 54px;
+    top: 10px;
+    width: 6px;
+    height: 6px;
+    transform-origin: 0 46px;
+  }
+
+  .stub-page__eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+  }
+
+  .stub-page__title {
+    margin-top: 10px;
+    font-size: clamp(24px, 7.2vw, 32px);
+    line-height: 1.12;
+  }
+
+  .stub-page__description {
+    margin-top: 12px;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .stub-page__status {
+    gap: 8px;
+    margin-top: 18px;
+    padding: 9px 12px;
+    font-size: 10px;
+    letter-spacing: 0.1em;
   }
 }
